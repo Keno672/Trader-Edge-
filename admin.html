@@ -1,22 +1,9 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js"></script></head><body onload="loadAdmin()"><div class="wrap"><script>document.write(nav("Admin"))</script>
-<div class="panel">
-  <div class="eyebrow">Update Centre</div>
-  <h1>2 scans drive the session</h1>
-  <div class="sub">Upload Scan 1 and Scan 2 first. Those two scans become the watchlist source and create the Top 5. Then upload one chart and one news file for the same session.</div>
-  <div class="field"><label>Session name</label><input id="sessionName" placeholder="Morning Command"></div>
-  <div id="currentState" class="chips"></div>
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Admin</title><link rel='stylesheet' href='assets/styles.css'><script src='assets/app.js'></script></head><body onload="renderAdmin()"><div class='wrap'><script>document.write(nav('Admin'))</script>
+<div class='panel'><div class='eyebrow'>Update Centre</div><h1>2 scans drive the session</h1><div class='field'><label>Session name</label><input id='sessionName'></div></div>
+<div class='cards'>
+  <div class='card'><div class='eyebrow'>Required</div><h3>Scan 1</h3><input type='file' onchange="setUpload('scan1',this)"><div id='scan1Name' class='note' style='margin-top:8px'></div></div>
+  <div class='card'><div class='eyebrow'>Required</div><h3>Scan 2</h3><input type='file' onchange="setUpload('scan2',this)"><div id='scan2Name' class='note' style='margin-top:8px'></div></div>
+  <div class='card'><div class='eyebrow'>Required</div><h3>Featured chart</h3><input type='file' onchange="setUpload('chart',this)"><div id='chartName' class='note' style='margin-top:8px'></div></div>
 </div>
-<div class="grid uploads" style="margin-top:16px">
-  <div class="upload-card"><div class="eyebrow">Required</div><h3>Scan 1</h3><div class="note">Used to build the merged watchlist.</div><input type="file" accept="image/*,.pdf" onchange="setUpload('scan1',this)"><div id="scan1Name" class="upload-name"></div></div>
-  <div class="upload-card"><div class="eyebrow">Required</div><h3>Scan 2</h3><div class="note">Merged with Scan 1 to rank the Top 5.</div><input type="file" accept="image/*,.pdf" onchange="setUpload('scan2',this)"><div id="scan2Name" class="upload-name"></div></div>
-  <div class="upload-card"><div class="eyebrow">Required</div><h3>Featured chart</h3><div class="note">Loads the current battlefield instrument.</div><input type="file" accept="image/*,.pdf" onchange="setUpload('chart',this)"><div id="chartName" class="upload-name"></div></div>
-  <div class="upload-card"><div class="eyebrow">Required</div><h3>Macro news</h3><div class="note">Sets risk-on / risk-off mood for the same session.</div><input type="file" accept="image/*,.pdf,.txt" onchange="setUpload('news',this)"><div id="newsName" class="upload-name"></div></div>
-</div>
-<div class="panel" style="margin-top:16px">
-  <div class="eyebrow">Publish session</div>
-  <h2>One publish. All pages sync.</h2>
-  <div class="tag-row"><span class="tag">Home Top 5</span><span class="tag">Watchlist</span><span class="tag">Command Desk</span><span class="tag">Intel</span><span class="tag">Battlefield</span><span class="tag">News</span></div>
-  <div class="actions"><button class="btn primary" onclick="publishSession()">Publish Session</button></div>
-  <div id="status" class="status">Waiting for Scan 1 + Scan 2.</div>
-</div>
+<div class='panel' style='margin-top:16px'><div class='eyebrow'>Macro news</div><input type='file' onchange="setUpload('news',this)"><div id='newsName' class='note' style='margin-top:8px'></div><div class='actions'><button class='btn primary' onclick='publishSession()'>Publish Session</button></div><div id='status' class='status'>Waiting for Scan 1 + Scan 2.</div></div>
 </div></body></html>
