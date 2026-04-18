@@ -1,0 +1,1 @@
+Mobile-first Trader Edge static app. Upload the full folder to GitHub. Uses localStorage demo logic for Top 5, Battlefield, and News publisher.

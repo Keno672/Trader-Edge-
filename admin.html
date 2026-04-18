@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js"></script></head><body onload="loadAdmin()"><div class="wrap"><script>document.write(nav("Admin"))</script>
+<div class="panel">
+  <div class="eyebrow">Backend admin page</div>
+  <h1>Simple publisher</h1>
+  <div class="sub">All the heavy work happens here. The frontend stays clean and game-like for users.</div>
+</div>
+<div class="admin-grid" style="margin-top:16px">
+  <div class="panel">
+    <div class="eyebrow">Scanner → Top 5</div>
+    <div class="field"><label>Session name</label><input id="sessionName"></div>
+    <div class="field"><label>Top 1</label><select id="top1"></select></div>
+    <div class="field"><label>Top 2</label><select id="top2"></select></div>
+    <div class="field"><label>Top 3</label><select id="top3"></select></div>
+    <div class="field"><label>Top 4</label><select id="top4"></select></div>
+    <div class="field"><label>Top 5</label><select id="top5"></select></div>
+    <div class="upload-hint">Scanner upload happens at the backend. Here you simply publish the Top 5 result into the Intel layer.</div>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">Chart → Battlefield</div>
+    <div class="field"><label>Selected instrument</label><select id="selectedInstrument" onchange="refreshBattleEditor()"></select></div>
+    <div class="box"><strong id="battleTicker">GOLD</strong></div>
+    <div class="field"><label>Ready bias</label><input id="readyBias"></div>
+    <div class="field"><label>Entry zone</label><input id="entryZone"></div>
+    <div class="field"><label>Stop</label><input id="stop"></div>
+    <div class="field"><label>Target 1</label><input id="target1"></div>
+    <div class="field"><label>Target 2</label><input id="target2"></div>
+    <div class="field"><label>Battlefield note</label><textarea id="battleNote" rows="4"></textarea></div>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">Macro upload → News</div>
+    <div class="field"><label>Risk regime</label><select id="newsRegime"><option>Risk-On</option><option>Risk-Off Lean</option><option>Risk-Off</option></select></div>
+    <div class="field"><label>Why</label><textarea id="newsWhy" rows="4"></textarea></div>
+    <div class="field"><label>Drivers (use | separator)</label><input id="newsDrivers"></div>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">Publish</div>
+    <div class="note">Press once and the mobile app updates across Home, Command Desk, and Watchlist.</div>
+    <div class="actions"><button class="btn primary" onclick="publishAdmin()">Publish Update</button></div>
+    <div id="status" class="status">Ready.</div>
+  </div>
+</div>
+</div></body></html>
