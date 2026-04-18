@@ -5,3 +5,10 @@ Default entry page is now splash screen at index.html. Main app homepage moved t
 Mobile splash chart visibility improved.
 
 Home page upgraded with a stronger AI trading visual panel.
+
+
+FULL REFRESH PACKAGE:
+- Upload ALL files in this folder to GitHub and replace existing files.
+- Do not upload the zip itself.
+- This package keeps index.html as the splash landing page.
+- home.html contains the upgraded AI graphic home panel.
