@@ -1,1 +1,1 @@
-Trader Edge mobile Update Centre build. Upload the full package to your repo.
+Trader Edge build with splash page, multi-scan update centre, and zone-map battlefield card.
