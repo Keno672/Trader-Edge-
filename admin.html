@@ -1,24 +1,22 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js"></script></head><body onload="loadAdmin()"><div class="wrap"><script>document.write(nav("Admin"))</script>
 <div class="panel">
-  <div class="eyebrow">Mobile Update Centre</div>
-  <h1>Multi-scan upload + publish</h1>
-  <div class="sub">Upload at least 2 scans, then one chart and one news file. Publish Session refreshes the whole app state.</div>
+  <div class="eyebrow">Update Centre</div>
+  <h1>2 scans drive the session</h1>
+  <div class="sub">Upload Scan 1 and Scan 2 first. Those two scans become the watchlist source and create the Top 5. Then upload one chart and one news file for the same session.</div>
   <div class="field"><label>Session name</label><input id="sessionName" placeholder="Morning Command"></div>
   <div id="currentState" class="chips"></div>
 </div>
 <div class="grid uploads" style="margin-top:16px">
-  <div class="upload-card"><div class="eyebrow">Scan 1</div><h3>Primary scan</h3><input type="file" accept="image/*,.pdf" onchange="setUpload('scan1',this)"><div id="scan1Name" class="upload-name"></div></div>
-  <div class="upload-card"><div class="eyebrow">Scan 2</div><h3>Secondary scan</h3><input type="file" accept="image/*,.pdf" onchange="setUpload('scan2',this)"><div id="scan2Name" class="upload-name"></div></div>
-  <div class="upload-card"><div class="eyebrow">Chart</div><h3>Featured chart</h3><input type="file" accept="image/*,.pdf" onchange="setUpload('chart',this)"><div id="chartName" class="upload-name"></div></div>
-  <div class="upload-card"><div class="eyebrow">Optional scan 3</div><input type="file" accept="image/*,.pdf" onchange="setUpload('scan3',this)"><div id="scan3Name" class="upload-name"></div></div>
-  <div class="upload-card"><div class="eyebrow">Optional scan 4</div><input type="file" accept="image/*,.pdf" onchange="setUpload('scan4',this)"><div id="scan4Name" class="upload-name"></div></div>
-  <div class="upload-card"><div class="eyebrow">News</div><h3>Macro file</h3><input type="file" accept="image/*,.pdf,.txt" onchange="setUpload('news',this)"><div id="newsName" class="upload-name"></div></div>
+  <div class="upload-card"><div class="eyebrow">Required</div><h3>Scan 1</h3><div class="note">Used to build the merged watchlist.</div><input type="file" accept="image/*,.pdf" onchange="setUpload('scan1',this)"><div id="scan1Name" class="upload-name"></div></div>
+  <div class="upload-card"><div class="eyebrow">Required</div><h3>Scan 2</h3><div class="note">Merged with Scan 1 to rank the Top 5.</div><input type="file" accept="image/*,.pdf" onchange="setUpload('scan2',this)"><div id="scan2Name" class="upload-name"></div></div>
+  <div class="upload-card"><div class="eyebrow">Required</div><h3>Featured chart</h3><div class="note">Loads the current battlefield instrument.</div><input type="file" accept="image/*,.pdf" onchange="setUpload('chart',this)"><div id="chartName" class="upload-name"></div></div>
+  <div class="upload-card"><div class="eyebrow">Required</div><h3>Macro news</h3><div class="note">Sets risk-on / risk-off mood for the same session.</div><input type="file" accept="image/*,.pdf,.txt" onchange="setUpload('news',this)"><div id="newsName" class="upload-name"></div></div>
 </div>
 <div class="panel" style="margin-top:16px">
-  <div class="eyebrow">Publish Session</div>
-  <h2>One tap refresh</h2>
-  <div class="sub">The app combines the scan set into one Top 5 and updates Battlefield with a visual zone map showing attack zone, stop, and targets.</div>
+  <div class="eyebrow">Publish session</div>
+  <h2>One publish. All pages sync.</h2>
+  <div class="tag-row"><span class="tag">Home Top 5</span><span class="tag">Watchlist</span><span class="tag">Command Desk</span><span class="tag">Intel</span><span class="tag">Battlefield</span><span class="tag">News</span></div>
   <div class="actions"><button class="btn primary" onclick="publishSession()">Publish Session</button></div>
-  <div id="status" class="status">Waiting for at least 2 scans, one chart, and one news file.</div>
+  <div id="status" class="status">Waiting for Scan 1 + Scan 2.</div>
 </div>
 </div></body></html>

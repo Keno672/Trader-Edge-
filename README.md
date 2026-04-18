@@ -1,23 +1,8 @@
-Trader Edge build with splash page, multi-scan update centre, and zone-map battlefield card.
+Trader Edge sync build.
 
-Default entry page is now splash screen at index.html. Main app homepage moved to home.html.
-
-Mobile splash chart visibility improved.
-
-Home page upgraded with a stronger AI trading visual panel.
-
-
-FULL REFRESH PACKAGE:
-- Upload ALL files in this folder to GitHub and replace existing files.
-- Do not upload the zip itself.
-- This package keeps index.html as the splash landing page.
-- home.html contains the upgraded AI graphic home panel.
-
-
-FIXED NAVIGATION PACKAGE:
-- index.html is the landing page only.
-- home.html is the actual home page.
-- All Home navigation links now go to home.html.
-- Landing screen Enter App button goes to home.html.
-
-Home page left panel now has an AI trading background graphic.
+Upload Scan 1 and Scan 2.
+Those two scans become the watchlist source.
+Top 5 is ranked from the same merged scan session.
+Home, Watchlist, and Command Desk read the same published session state.
+Chart upload sets featured Battlefield instrument.
+News upload sets macro mood.
