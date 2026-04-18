@@ -135,3 +135,38 @@ input,select,textarea{width:100%;padding:12px;border-radius:14px;border:1px soli
     grid-template-columns:1fr;
   }
 }
+
+
+/* Home left panel image-only mode */
+.hero-picture-only{
+  position:relative;
+  min-height:720px;
+  overflow:hidden;
+  padding:0;
+  background:
+    linear-gradient(180deg, rgba(6,10,18,.10), rgba(6,10,18,.28)),
+    url('hero-ai-trading.jpeg') center center / cover no-repeat;
+}
+.hero-picture-only::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at top left, rgba(126,182,255,.12), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(216,176,108,.10), transparent 30%);
+  pointer-events:none;
+}
+.hero-picture-only .image-gloss{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 16%, rgba(0,0,0,.08) 100%);
+  pointer-events:none;
+}
+@media(max-width:879px){
+  .hero-picture-only{
+    min-height:520px;
+    background:
+      linear-gradient(180deg, rgba(6,10,18,.10), rgba(6,10,18,.30)),
+      url('hero-ai-trading.jpeg') center center / cover no-repeat;
+  }
+}
