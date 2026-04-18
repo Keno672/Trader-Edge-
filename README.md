@@ -19,3 +19,5 @@ FIXED NAVIGATION PACKAGE:
 - home.html is the actual home page.
 - All Home navigation links now go to home.html.
 - Landing screen Enter App button goes to home.html.
+
+Home page left panel now has an AI trading background graphic.
