@@ -187,3 +187,98 @@ linear-gradient(180deg,#081425,#0d1830 45%,#08101d)}
     transform:rotate(-90deg);
   }
 }
+
+
+.hero-graphic{
+  position:relative;
+  overflow:hidden;
+  min-height:100%;
+  background:
+    radial-gradient(circle at top right, rgba(216,176,108,.18), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(126,182,255,.16), transparent 26%),
+    linear-gradient(180deg, rgba(17,29,49,.98), rgba(8,15,28,.98));
+}
+.hero-graphic::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.02), transparent 40%),
+    repeating-linear-gradient(90deg, transparent, transparent 52px, rgba(255,255,255,.025) 53px),
+    repeating-linear-gradient(0deg, transparent, transparent 52px, rgba(255,255,255,.025) 53px);
+  pointer-events:none;
+}
+.graphic-frame{
+  position:relative;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  overflow:hidden;
+  margin-top:10px;
+  background:rgba(255,255,255,.03);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.graphic-frame img{
+  display:block;
+  width:100%;
+  height:auto;
+  min-height:280px;
+  object-fit:cover;
+  opacity:.96;
+}
+.graphic-overlay{
+  position:absolute;
+  inset:auto 14px 14px 14px;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg, rgba(5,10,18,.2), rgba(5,10,18,.8));
+  backdrop-filter: blur(8px);
+}
+.graphic-overlay h3{
+  margin:0 0 6px;
+  font-size:26px;
+  line-height:1;
+}
+.graphic-overlay p{
+  margin:0;
+  color:var(--muted);
+}
+.orbit-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.orbit-tag{
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);
+  font-size:13px;
+  font-weight:800;
+}
+.next-level{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(216,176,108,.32);
+  background:rgba(216,176,108,.12);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:879px){
+  .graphic-frame img{
+    min-height:220px;
+  }
+  .graphic-overlay{
+    inset:auto 10px 10px 10px;
+    padding:12px;
+  }
+  .graphic-overlay h3{
+    font-size:22px;
+  }
+}
