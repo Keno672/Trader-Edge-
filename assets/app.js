@@ -1,17 +1,84 @@
 
-const S={"sessionName": "Morning Command", "lastUpdated": "18/04/2026, 17:09:53", "watchlistSource": "Scan 1 + Scan 2", "selected": "GOLD", "top5": [{"ticker": "GOLD", "score": 92, "bias": "SELL", "reason": "Resistance fade + defensive pressure"}, {"ticker": "NAS100", "score": 88, "bias": "BUY", "reason": "Dip support + risk bid"}, {"ticker": "SPX500", "score": 84, "bias": "BUY", "reason": "Index strength + session support"}, {"ticker": "US30", "score": 80, "bias": "BUY", "reason": "Momentum structure holding"}, {"ticker": "WTI", "score": 76, "bias": "SELL", "reason": "Weak rebound into supply"}], "watchlist": [{"ticker": "GOLD", "name": "Gold Spot", "category": "Metals", "bias": "SELL", "trend": "down"}, {"ticker": "NAS100", "name": "Nasdaq 100", "category": "Indices", "bias": "BUY", "trend": "up"}, {"ticker": "SPX500", "name": "S&P 500", "category": "Indices", "bias": "BUY", "trend": "up"}, {"ticker": "US30", "name": "Dow 30", "category": "Indices", "bias": "BUY", "trend": "up"}, {"ticker": "WTI", "name": "WTI Crude", "category": "Energy", "bias": "SELL", "trend": "down"}, {"ticker": "EURUSD", "name": "EURUSD", "category": "Forex", "bias": "BUY", "trend": "up"}, {"ticker": "BITCOIN", "name": "Bitcoin", "category": "Crypto", "bias": "BUY", "trend": "up"}], "battlefield": {"GOLD": {"readyBias": "SELL the rally", "timeframe": "Intraday", "entryZone": "R2\u2013R3 resistance band", "stop": "Above spike high", "target1": "Mid-range retest", "target2": "Lower support / FPV", "note": "Wait for rejection before pressing the sell.", "direction": "down"}, "NAS100": {"readyBias": "BUY the dip", "timeframe": "Intraday", "entryZone": "Support pullback zone", "stop": "Below session support", "target1": "Morning high retest", "target2": "Breakout extension", "note": "Best when risk-on tone stays active.", "direction": "up"}, "SPX500": {"readyBias": "BUY support reaction", "timeframe": "Intraday", "entryZone": "Support zone", "stop": "Below session low", "target1": "Mid-range retest", "target2": "High retest", "note": "Needs the bid to hold early.", "direction": "up"}, "US30": {"readyBias": "BUY continuation", "timeframe": "Intraday", "entryZone": "Pullback into support", "stop": "Below structure low", "target1": "Session mid", "target2": "High extension", "note": "Clean if momentum stays firm.", "direction": "up"}, "WTI": {"readyBias": "SELL the rally", "timeframe": "Intraday", "entryZone": "Supply retest", "stop": "Above session high", "target1": "Mid-range", "target2": "Support flush", "note": "Avoid if fresh geopolitical squeeze hits oil.", "direction": "down"}}, "news": {"regime": "Risk-Off", "summary": "Macro upload suggests a cautious, defensive trading tone.", "why": "Defensive flows are stronger than aggressive risk-taking, so the session favours cleaner fades and tighter control instead of chasing breakouts.", "drivers": ["Defensive tone", "Dollar firm", "Headline risk active"]}};
-function g(){try{return JSON.parse(localStorage.getItem('te_state')||JSON.stringify(S));}catch(e){return S;}}
-function s(v){localStorage.setItem('te_state', JSON.stringify(v));}
-function nav(active){const links=[['index.html','Home'],['login.html','Login'],['dashboard.html','Command Desk'],['watchlist.html','Watchlist'],['admin.html','Admin']];return `<div class="nav"><div class="brand">The Trader <span>Edge</span></div><div class="links">${links.map(([h,l])=>`<a href="${h}" class="${active===l?'active':''}">${l}</a>`).join('')}</div></div>`;}
-function bc(v){return v==='BUY'?'buy':'sell';}
-function ta(v){return v==='up'?'↑ Up':'↓ Down';}
-function find(t){const st=g();return st.watchlist.find(x=>x.ticker===t)||st.watchlist[0];}
-function selectTicker(t){const st=g();st.selected=t;s(st);renderDash();renderWatch();}
-function renderTop5(elid, buttons=false){const st=g();const el=document.getElementById(elid); if(!el) return; el.innerHTML=st.top5.map((x,i)=> buttons ? `<button class="top5pick ${st.selected===x.ticker?'active':''}" onclick="selectTicker('${x.ticker}')">${x.ticker}</button>` : `<div class="top5item"><div><div class="eyebrow">Top ${i+1}</div><h3>${x.ticker}</h3><div class="note">${x.reason}</div></div><div style="text-align:right"><div class="score">${x.score}</div><div class="pill ${bc(x.bias)}">${x.bias}</div></div></div>`).join('');}
-function zone(b){const d=b.direction||'down';return `<div class="zonechart"><div class="zline zstop"></div><div class="zlabel lstop">Stop</div><div class="zonebox ${d}"></div><div class="zlabel lentry">Attack Zone</div><div class="zline zlive"></div><div class="zlabel llive">Live</div><div class="zline zt1"></div><div class="zlabel lt1">Target 1</div><div class="zline zt2"></div><div class="zlabel lt2">Target 2</div><div class="arrowroute ${d}">➜</div></div>`;}
-function renderHome(){const st=g(); document.getElementById('meta').innerHTML=`<span class="chip">Session: ${st.sessionName}</span><span class="chip">Updated: ${st.lastUpdated}</span><span class="chip">Watchlist source: ${st.watchlistSource}</span>`; renderTop5('top5');}
-function renderDash(){const st=g(); document.getElementById('meta').innerHTML=`<span class="chip">Session: ${st.sessionName}</span><span class="chip">Updated: ${st.lastUpdated}</span><span class="chip">Watchlist source: ${st.watchlistSource}</span>`; renderTop5('top5buttons', true); const x=find(st.selected); const t=st.top5.find(a=>a.ticker===x.ticker)||{reason:'Watchlist candidate'}; const b=st.battlefield[x.ticker]||st.battlefield['GOLD']; document.getElementById('cards').innerHTML=`<div class="card intel"><div class="eyebrow">Intel Card</div><div class="cardtitle">${x.ticker}</div><div class="sub">${x.name} · ${x.category}</div><div class="box"><div class="note">Scanner output</div><div class="watchrow" style="margin-top:10px"><div>Bias</div><div class="pill ${bc(x.bias)}">${x.bias}</div></div><div class="watchrow"><div>Trend</div><div>${ta(x.trend)}</div></div><div class="watchrow"><div>Why it made Top 5</div><div>${t.reason}</div></div></div><div class="box"><strong>${x.bias==='BUY'?'We want to buy key reversals from support.':'We want to sell key reversals from resistance.'}</strong></div></div><div class="card battle"><div class="eyebrow">Battlefield Card</div><div class="cardtitle">${x.ticker}</div><div class="sub">Chart-driven trade plan</div><div class="box"><strong>${b.readyBias}</strong><div class="note" style="margin-top:8px">${b.note}</div></div>${zone(b)}<div class="levels"><div class="level"><strong>Attack Zone</strong>${b.entryZone}</div><div class="level"><strong>Stop Loss</strong>${b.stop}</div><div class="level"><strong>Take Profit 1</strong>${b.target1}</div><div class="level"><strong>Take Profit 2</strong>${b.target2}</div></div></div><div class="card news"><div class="eyebrow">News Card</div><div class="cardtitle">${st.news.regime}</div><div class="sub">Macro mood from uploaded news</div><div class="box">${st.news.summary}</div><div class="box"><strong>Why</strong><div class="note" style="margin-top:8px">${st.news.why}</div></div><div class="box"><strong>Drivers</strong><div class="tagrow">${st.news.drivers.map(d=>`<span class="tag">${d}</span>`).join('')}</div></div></div>`;}
-function renderWatch(){const st=g(); document.getElementById('meta').innerHTML=`<span class="chip">Session: ${st.sessionName}</span><span class="chip">Updated: ${st.lastUpdated}</span><span class="chip">Watchlist source: ${st.watchlistSource}</span>`; renderTop5('top5buttons', true); const m=st.watchlist.filter(x=>x.category!=='Crypto'); const c=st.watchlist.filter(x=>x.category==='Crypto'); const row=x=>`<div class="watchrow"><div><strong>${x.ticker}</strong><div class="note">${x.name} · ${x.category}</div></div><div class="tagrow"><span class="pill ${bc(x.bias)}">${x.bias}</span><span class="pill">${ta(x.trend)}</span><button class="loadbtn" onclick="selectTicker('${x.ticker}');location.href='dashboard.html'">Load Chart</button></div></div>`; document.getElementById('market').innerHTML=m.map(row).join(''); document.getElementById('crypto').innerHTML=c.map(row).join('');}
-function renderAdmin(){const st=g(); document.getElementById('sessionName').value=st.sessionName; ['scan1','scan2','chart','news'].forEach(k=>{const el=document.getElementById(k+'Name'); if(el) el.textContent=st[k]||'Nothing uploaded yet';});}
-function setUpload(k, input){const f=input.files&&input.files[0]; if(!f)return; const st=g(); st[k]=f.name; s(st); renderAdmin();}
-function publishSession(){const st=g(); st.sessionName=document.getElementById('sessionName').value||'Morning Command'; st.watchlistSource='Scan 1 + Scan 2'; st.lastUpdated=new Date().toLocaleString(); s(st); document.getElementById('status').textContent='Published. The session now syncs across Home, Watchlist, and Command Desk.';}
+const DEFAULT_STATE = {"sessionName": "Morning Command", "lastUpdated": "18/04/2026, 17:09:53", "market": "Crypto", "selected": "BTCUSD", "top5": [{"ticker": "GOLD", "market": "Commodities", "bias": "SELL", "score": 92, "reason": "Resistance fade + defensive pressure"}, {"ticker": "NAS100", "market": "Indices", "bias": "BUY", "score": 88, "reason": "Dip support + risk bid"}, {"ticker": "BTCUSD", "market": "Crypto", "bias": "BUY", "score": 86, "reason": "Momentum holding above support"}, {"ticker": "EURUSD", "market": "Forex", "bias": "BUY", "score": 82, "reason": "Dollar softness + structure hold"}, {"ticker": "WTI", "market": "Commodities", "bias": "SELL", "score": 78, "reason": "Weak rebound into supply"}], "watchlists": {"Crypto": ["BTCUSD", "ETHUSD", "SOLUSD", "XRPUSD"], "Forex": ["EURUSD", "GBPUSD", "USDJPY", "DXY"], "Indices": ["NAS100", "SPX500", "US30", "DAX40"], "Commodities": ["GOLD", "SILVER", "WTI", "BRENT"]}, "chartMap": {"BTCUSD": {"market": "Crypto", "bias": "BUY", "entry": "Pullback into breakout support", "stop": "Below structure low", "tp1": "Prior intraday high", "tp2": "Momentum extension", "confidence": 85, "explanation": "Momentum is holding above support and the chart is printing higher lows. The setup favours a continuation buy as long as the pullback stays controlled and risk sentiment does not weaken."}, "GOLD": {"market": "Commodities", "bias": "SELL", "entry": "Resistance retest zone", "stop": "Above spike high", "tp1": "Mid-range retest", "tp2": "Lower support / FPV", "confidence": 84, "explanation": "Gold is fading into resistance while defensive pressure stays elevated. The chart suggests a controlled sell setup if price fails to reclaim the recent spike high."}, "NAS100": {"market": "Indices", "bias": "BUY", "entry": "Support pullback zone", "stop": "Below session support", "tp1": "Morning high retest", "tp2": "Breakout extension", "confidence": 83, "explanation": "The index is holding structure and dip buyers remain active. If support is defended again, the trade favours a continuation buy back toward the highs."}, "EURUSD": {"market": "Forex", "bias": "BUY", "entry": "Higher-low support area", "stop": "Below session low", "tp1": "Range high retest", "tp2": "Breakout continuation", "confidence": 80, "explanation": "Dollar softness is helping the pair hold structure. The chart stays constructive while price remains above the latest support shelf."}, "WTI": {"market": "Commodities", "bias": "SELL", "entry": "Supply retest", "stop": "Above session high", "tp1": "Mid-range", "tp2": "Support flush", "confidence": 79, "explanation": "Oil has rebounded weakly into supply and the rally is not yet convincing. The setup favours a fade while price stays below the local high."}}, "macro": {"bias": "Risk-Off", "why": "Defensive flows are stronger, headline risk is still active, and traders are rewarding cleaner fades rather than aggressive breakout chasing."}};
+function getState(){
+  try { return JSON.parse(localStorage.getItem('te_mobile_state')) || JSON.stringify(DEFAULT_STATE)); }
+  catch(e) { return DEFAULT_STATE; }
+}
+function setSelected(ticker){
+  const st = getState();
+  st.selected = ticker;
+  localStorage.setItem('te_mobile_state', JSON.stringify(st));
+}
+function selectedData(){
+  const st = getState();
+  return st.chartMap[st.selected] || st.chartMap.BTCUSD;
+}
+function badgeClass(v){ return v === 'BUY' ? 'pill buy' : 'pill sell'; }
+function chartSVG(direction='up'){
+  const up = direction === 'up';
+  const points = up
+    ? '10,420 40,360 70,330 100,290 130,320 160,275 190,248 220,268 250,205 280,222 310,170 340,188 370,136 400,155'
+    : '10,160 40,190 70,180 100,220 130,212 160,255 190,235 220,290 250,275 280,325 310,310 340,352 370,338 400,392';
+  const price = up ? '75,875.78' : '5,020.600';
+  const color = up ? '#22d3aa' : '#f16067';
+  return `
+    <svg viewBox="0 0 430 520" preserveAspectRatio="none">
+      <polyline fill="none" stroke="${color}" stroke-width="5" points="${points}"/>
+      <line x1="0" x2="430" y1="210" y2="210" stroke="#ef6461" stroke-dasharray="6 7"/>
+      <rect x="${up ? 245 : 235}" y="${up ? 165 : 145}" width="88" height="88" rx="16" fill="rgba(214,176,109,.14)" stroke="rgba(214,176,109,.55)"/>
+      <rect x="340" y="196" width="88" height="34" rx="8" fill="#ef6461"/>
+      <text x="353" y="219" fill="white" font-size="16" font-family="Arial">${price}</text>
+    </svg>`;
+}
+function renderTop5(){
+  const st = getState();
+  const el = document.getElementById('top5List');
+  if (!el) return;
+  el.innerHTML = st.top5.map((x,i)=>`
+    <a class="top-item" href="chart.html" onclick="setSelected('${x.ticker}')">
+      <div class="toprow">
+        <div>
+          <div class="small">TOP ${i+1}</div>
+          <div style="font-size:24px;font-weight:900;margin-top:4px">${x.ticker}</div>
+          <div class="sub" style="margin-top:8px">${x.reason}</div>
+        </div>
+        <div class="center">
+          <div class="score">${x.score}</div>
+          <div class="${badgeClass(x.bias)}">${x.bias}</div>
+        </div>
+      </div>
+    </a>`).join('');
+}
+function renderChart(){
+  const st = getState();
+  const data = selectedData();
+  const ttl = document.getElementById('chartTitle');
+  const ttl2 = document.getElementById('chartTitle2');
+  const el = document.getElementById('chartWrap');
+  if (ttl) ttl.textContent = st.selected;
+  if (ttl2) ttl2.textContent = st.selected;
+  if (el) el.innerHTML = chartSVG(data.bias === 'BUY' ? 'up' : 'down');
+}
+function renderDecision(){
+  const st = getState();
+  const data = selectedData();
+  document.getElementById('decisionTicker').textContent = st.selected;
+  document.getElementById('signalText').textContent = data.bias === 'BUY' ? 'Long Position (Buy)' : 'Short Position (Sell)';
+  document.getElementById('signalText').className = data.bias === 'BUY' ? 'green' : 'red';
+  document.getElementById('conf').textContent = `Confidence Score: ${data.confidence}%`;
+  document.getElementById('entry').textContent = data.entry;
+  document.getElementById('stop').textContent = data.stop;
+  document.getElementById('tp').textContent = data.tp1;
+  document.getElementById('explanation').textContent = data.explanation;
+}
+function renderHome(){
+  const st = getState();
+  const bias = st.macro.bias;
+  const biasEl = document.getElementById('macroBias');
+  if (biasEl) {
+    biasEl.textContent = bias;
+    biasEl.className = bias.includes('On') ? 'big-bias bias-green' : 'big-bias bias-red';
+  }
+  const why = document.getElementById('macroWhy');
+  if (why) why.textContent = st.macro.why;
+}

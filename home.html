@@ -1,13 +1,34 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Home</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js"></script></head><body onload="renderHome()"><div class="wrap"><script>document.write(nav("Home"))</script>
-<div class="grid hero-grid">
-  
-
-<div class="panel hero hero-picture-only">
-    <div class="image-gloss"></div>
-  </div>
-  <div class="panel hero">
-    <div class="eyebrow">Today’s Top 5 Setups</div>
-    <div id="top5List"></div>
-  </div>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Top 5</title>
+  <link rel="stylesheet" href="assets/styles.css"/>
+  <script defer src="assets/app.js"></script>
+</head>
+<body onload="renderTop5();renderHome();">
+  <div class="app">
+    <div class="status"><span>18:54</span><span>📶 33</span></div>
+    
+<div class="brand"><h1>Chart Pal</h1><div class="badge">AI Scans</div></div>
+<div class="card">
+  <div class="section-title">Today's Top 5 Setups</div>
+  <div id="top5List"></div>
 </div>
-</div></body></html>
+<div style="height:16px"></div>
+<div class="card">
+  <div class="macro">
+    <div>
+      <div class="section-title">Macro Mood</div>
+      <div id="macroBias" class="big-bias">Risk-Off</div>
+    </div>
+    <div class="badge">Session Bias</div>
+  </div>
+  <div id="macroWhy" class="sub" style="margin-top:14px"></div>
+</div>
+
+    <div class="footer-space"></div>
+  </div>
+</body>
+</html>
