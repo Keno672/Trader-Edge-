@@ -72,3 +72,118 @@ linear-gradient(180deg,#081425,#0d1830 45%,#08101d)}
 .badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);font-weight:800}
 @media(min-width:880px){.grid.cards{grid-template-columns:repeat(3,1fr)}.grid.dashboard{grid-template-columns:1fr 1fr 1fr}.grid.uploads{grid-template-columns:repeat(3,1fr)}.levels{grid-template-columns:1fr 1fr}.splash-grid{grid-template-columns:1fr}}
 @media(max-width:879px){.grid.hero-grid{grid-template-columns:1fr}.splash-title{font-size:42px}.battle-scene{height:330px}.mission-card{width:auto;right:18px}}
+
+
+/* Mobile splash chart fix */
+@media(max-width: 879px){
+  .splash-wrap{
+    min-height:auto;
+    align-items:flex-start;
+    padding:16px 12px 28px;
+  }
+  .splash-card{
+    padding:16px;
+    border-radius:22px;
+  }
+  .splash-title{
+    font-size:34px;
+    line-height:.95;
+    margin-bottom:8px;
+  }
+  .splash-sub{
+    font-size:16px;
+    line-height:1.25;
+    max-width:none;
+  }
+  .badge-row{
+    gap:8px;
+  }
+  .badge{
+    font-size:13px;
+    padding:7px 10px;
+  }
+  .trump-board{
+    margin-top:14px;
+    padding:12px;
+    border-radius:18px;
+  }
+  .battle-scene{
+    height:360px;
+    border-radius:18px;
+  }
+  .mission-card{
+    left:12px;
+    right:12px;
+    bottom:12px;
+    width:auto;
+    max-width:none;
+    padding:14px;
+    border-radius:16px;
+  }
+  .mission-card h3{
+    font-size:22px;
+    line-height:.95;
+  }
+  .mission-card .note{
+    font-size:14px;
+    line-height:1.2;
+  }
+  .lets-go{
+    padding:10px 14px;
+    margin-top:12px;
+    font-size:15px;
+  }
+
+  /* Make the chart itself visible above the mission card on phones */
+  .line-stop{ top:40px; }
+  .line-entry{ top:92px; }
+  .line-t1{ top:152px; }
+  .line-t2{ top:206px; }
+
+  .label{
+    right:10px;
+    font-size:11px;
+    padding:6px 8px;
+  }
+  .ls{ top:22px; }
+  .le{ top:74px; }
+  .ltg1{ top:134px; }
+  .ltg2{ top:188px; }
+
+  .attack-zone{
+    top:72px;
+    left:58%;
+    width:28%;
+    height:56px;
+    border-radius:12px;
+  }
+
+  .price-road{
+    left:10%;
+    right:26%;
+    top:43%;
+    height:5px;
+    transform:rotate(-8deg);
+  }
+  .price-road::after{
+    width:14px;
+    height:14px;
+    top:-5px;
+    right:-5px;
+  }
+
+  /* Remove the old mobile arrow positioning and keep it subtle */
+  .arrow-route{
+    font-size:42px;
+  }
+  .arrow-route.down{
+    left:63%;
+    top:112px;
+    transform:rotate(90deg);
+  }
+  .arrow-route.up{
+    left:63%;
+    top:116px;
+    transform:rotate(-90deg);
+  }
+}
