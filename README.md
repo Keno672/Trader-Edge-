@@ -12,3 +12,10 @@ FULL REFRESH PACKAGE:
 - Do not upload the zip itself.
 - This package keeps index.html as the splash landing page.
 - home.html contains the upgraded AI graphic home panel.
+
+
+FIXED NAVIGATION PACKAGE:
+- index.html is the landing page only.
+- home.html is the actual home page.
+- All Home navigation links now go to home.html.
+- Landing screen Enter App button goes to home.html.
