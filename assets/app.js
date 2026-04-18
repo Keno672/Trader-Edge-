@@ -21,7 +21,27 @@ function battleCard(t){const b=getState().battlefield[t]||getState().battlefield
 function newsCard(){const n=getState().news;return `<div class="card news"><div class="card-header"><div><div class="eyebrow">News Card</div><div class="card-title">${n.regime}</div><div class="sub">Macro mood from uploaded news</div></div><div class="pill neutral">Risk Mood</div></div><div class="box"><div class="note">${n.summary}</div></div><div class="box"><strong>Why</strong><div class="note" style="margin-top:8px">${n.why}</div></div><div class="box"><strong>Drivers</strong><div class="tag-row">${n.drivers.map(d=>`<span class="tag">${d}</span>`).join('')}</div></div></div>`;}
 function renderDashboard(){const s=getState();renderTop5Strip();const el=document.getElementById('cards');if(el) el.innerHTML=intelCard(s.selected)+battleCard(s.selected)+newsCard();const sum=document.getElementById('sessionMeta');if(sum) sum.innerHTML=`<span class="chip">Session: ${s.sessionName}</span><span class="chip">Updated: ${s.lastUpdated}</span>`;renderSyncMeta();}
 function renderWatchlist(){const s=getState();renderTop5Strip();const market=s.watchlist.filter(x=>x.category!=='Crypto');const crypto=s.watchlist.filter(x=>x.category==='Crypto');const row=x=>`<div class="watchlist-row"><div><strong>${x.ticker}</strong><div class="note">${x.name} · ${x.category}</div></div><div class="tag-row"><span class="pill ${biasClass(x.bias)}">${x.bias}</span><span class="pill neutral">${trendArrow(x.trend)}</span><button onclick="selectInstrument('${x.ticker}');location.href='dashboard.html'">Load Chart</button></div></div>`;const m=document.getElementById('marketWatch');const c=document.getElementById('cryptoWatch');if(m) m.innerHTML=market.map(row).join('');if(c) c.innerHTML=crypto.map(row).join('');const sum=document.getElementById('watchMeta');if(sum) sum.innerHTML=`<span class="chip">Session: ${s.sessionName}</span><span class="chip">Updated: ${s.lastUpdated}</span>`;renderSyncMeta();}
-function renderHome(){const s=getState();const meta=document.getElementById('homeMeta');if(meta) meta.innerHTML=`<span class="chip">Session: ${s.sessionName}</span><span class="chip">Updated: ${s.lastUpdated}</span>`;renderTop5List();renderSyncMeta();}
+function renderHome(){
+  const s=getState();
+  const meta=document.getElementById('homeMeta');
+  if(meta) meta.innerHTML=`<span class="chip">Session: ${s.sessionName}</span><span class="chip">Updated: ${s.lastUpdated}</span>`;
+  const biasEl=document.getElementById('dayBias');
+  const whyEl=document.getElementById('macroWhy30');
+  if(biasEl){
+    const riskOn = String(s.news.regime || '').toLowerCase().includes('risk-on');
+    const cls = riskOn ? 'bias-signal bias-risk-on' : 'bias-signal bias-risk-off';
+    const label = riskOn ? 'Risk-On' : 'Risk-Off';
+    biasEl.innerHTML = `<div class="${cls}">${label}</div><div class="macro-mini">Day bias: ${label} ${riskOn ? 'favours pressing longs and continuation setups.' : 'favours defence, tighter risk, and cleaner fade entries.'}</div>`;
+  }
+  if(whyEl){
+    let text = s.news.why || s.news.summary || '';
+    const words = text.trim().split(/\s+/).filter(Boolean);
+    if(words.length > 30) text = words.slice(0,30).join(' ') + '…';
+    whyEl.textContent = text;
+  }
+  renderTop5List();
+  renderSyncMeta();
+}
 function loadAdmin(){const s=getState();document.getElementById('sessionName').value=s.sessionName;['scan1','scan2','chart','news'].forEach(k=>{const el=document.getElementById(k+'Name');if(el) el.textContent=s.uploads[k]||'Nothing uploaded yet';});const meta=document.getElementById('currentState');if(meta) meta.innerHTML=`<span class="chip">Selected: ${s.selected}</span><span class="chip">Top 1: ${s.top5[0].ticker}</span><span class="chip">Source: ${s.watchlistSource}</span>`;}
 function setUpload(type,input){const f=input.files&&input.files[0];if(!f) return;const s=getState();s.uploads[type]=f.name;setState(s);loadAdmin();}
 function publishSession(){

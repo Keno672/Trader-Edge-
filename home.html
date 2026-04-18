@@ -1,6 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Home</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js"></script></head><body onload="renderHome()"><div class="wrap"><script>document.write(nav("Home"))</script>
 <div class="grid hero-grid">
-  <div class="panel hero hero-ai-panel">
+  
+<div class="panel hero hero-ai-panel">
     <div class="eyebrow">Home page</div>
     <h1>AI scans. AI chart reads.<br>Macro mood.</h1>
     <div class="sub">Upload 2 scans and they become the session watchlist source. The same session then drives Top 5, Watchlist, and Command Desk together.</div>
@@ -8,7 +9,24 @@
     <div class="actions"><a class="btn primary" href="login.html">Login</a><a class="btn" href="dashboard.html">Open Command Desk</a></div>
     <div id="homeMeta" class="chips"></div>
     <div data-sync-meta class="chips"></div>
-    <div class="box sync-box"><strong>Simple strategy</strong><div class="note" style="margin-top:8px">We day trade key reversals. Buy strong reactions from support and sell strong reactions from resistance. Scan 1 + Scan 2 create the watchlist, rank the Top 5, and sync the same session across the whole app.</div></div>
+    <div class="hero-stack">
+      <div class="hero-inline-panels">
+        <div class="macro-bias-panel">
+          <div class="eyebrow">Session bias</div>
+          <h3>Today’s bias</h3>
+          <div id="dayBias"></div>
+        </div>
+        <div class="macro-why-panel macro-wordcap">
+          <div class="eyebrow">30-word macro read</div>
+          <h3>Why this bias</h3>
+          <div id="macroWhy30" class="macro-mini"></div>
+        </div>
+      </div>
+      <div class="simple-strategy-panel">
+        <strong>Simple strategy</strong>
+        <div class="note">We day trade key reversals. Buy strong reactions from support and sell strong reactions from resistance. Scan 1 + Scan 2 create the watchlist, rank the Top 5, and sync the same session across the whole app.</div>
+      </div>
+    </div>
   </div>
   <div class="panel hero">
     <div class="eyebrow">Today’s Top 5 Setups</div>
