@@ -1,1 +1,1 @@
-Simple 3-upload Trader Edge build. Upload full package to a clean repo.
+Trader Edge mobile Update Centre build. Upload the full package to your repo.

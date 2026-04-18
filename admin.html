@@ -1,9 +1,41 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js"></script></head><body onload="loadAdmin()"><div class="wrap"><script>document.write(nav("Admin"))</script>
-<div class="panel upload-main"><div class="eyebrow">Backend admin page</div><h1>Upload 3 things. App does the rest.</h1><div class="sub">This is the simple version: one scan, one chart, one news upload. Then press one button.</div></div>
-<div class="admin-grid" style="margin-top:16px">
-  <div class="upload-box"><div class="eyebrow">Upload 1</div><h3>Scan</h3><div class="note">Used to build the Top 5 trades.</div><input type="file" accept="image/*,.pdf" onchange="setUpload('scan',this)"><div id="scanName" class="upload-name"></div></div>
-  <div class="upload-box"><div class="eyebrow">Upload 2</div><h3>Chart</h3><div class="note">Used to build the Battlefield Card.</div><input type="file" accept="image/*,.pdf" onchange="setUpload('chart',this)"><div id="chartName" class="upload-name"></div></div>
-  <div class="upload-box"><div class="eyebrow">Upload 3</div><h3>News</h3><div class="note">Used to judge risk-on / risk-off.</div><input type="file" accept="image/*,.pdf,.txt" onchange="setUpload('news',this)"><div id="newsName" class="upload-name"></div></div>
+<div class="panel">
+  <div class="eyebrow">Mobile Update Centre</div>
+  <h1>3 uploads + one publish</h1>
+  <div class="sub">Upload scan, chart, and news. Then hit Publish Session to refresh the entire app state.</div>
+  <div class="field"><label>Session name</label><input id="sessionName" placeholder="Morning Command"></div>
+  <div id="currentState" class="chips"></div>
 </div>
-<div class="panel" style="margin-top:16px"><div class="eyebrow">Process</div><h2>One action only</h2><div class="actions"><button class="btn primary" onclick="processUploads()">Process Update</button></div><div id="status" class="status">Waiting for your 3 uploads.</div></div>
+
+<div class="grid uploads" style="margin-top:16px">
+  <div class="upload-card">
+    <div class="eyebrow">Upload 1</div>
+    <h3>Scan</h3>
+    <div class="note">Used to build Top 5 and Intel.</div>
+    <input type="file" accept="image/*,.pdf" onchange="setUpload('scan',this)">
+    <div id="scanName" class="upload-name"></div>
+  </div>
+  <div class="upload-card">
+    <div class="eyebrow">Upload 2</div>
+    <h3>Chart</h3>
+    <div class="note">Used to set the featured Battlefield.</div>
+    <input type="file" accept="image/*,.pdf" onchange="setUpload('chart',this)">
+    <div id="chartName" class="upload-name"></div>
+  </div>
+  <div class="upload-card">
+    <div class="eyebrow">Upload 3</div>
+    <h3>News</h3>
+    <div class="note">Used to judge risk-on / risk-off.</div>
+    <input type="file" accept="image/*,.pdf,.txt" onchange="setUpload('news',this)">
+    <div id="newsName" class="upload-name"></div>
+  </div>
+</div>
+
+<div class="panel" style="margin-top:16px">
+  <div class="eyebrow">Publish Session</div>
+  <h2>One tap refresh</h2>
+  <div class="sub">This updates Home, Watchlist, Top 5, Command Desk, Battlefield, and News together.</div>
+  <div class="actions"><button class="btn primary" onclick="publishSession()">Publish Session</button></div>
+  <div id="status" class="status">Waiting for your 3 uploads.</div>
+</div>
 </div></body></html>

@@ -1,10 +1,11 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Home</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js"></script></head><body onload="renderTop5List()"><div class="wrap"><script>document.write(nav("Home"))</script>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Home</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js"></script></head><body onload="renderHomeMeta()"><div class="wrap"><script>document.write(nav("Home"))</script>
 <div class="grid hero-grid">
   <div class="panel hero">
     <div class="eyebrow">Mobile-first trading app</div>
     <h1>AI scans. AI chart reads. Macro mood.</h1>
-    <p class="lead">Upload only three things at the backend: a scan, a chart, and a macro news file. The app turns those into the Top 5 trades, a Battlefield Card, and a News Card for the day.</p>
+    <p class="lead">Use the mobile Update Centre to upload a scan, a chart, and a news file. One tap on Publish Session refreshes the whole app state.</p>
     <div class="actions"><a class="btn primary" href="login.html">Login</a><a class="btn" href="dashboard.html">Open Command Desk</a></div>
+    <div id="homeMeta" class="chips"></div>
     <div class="box"><strong>Simple strategy</strong><p class="mobile-note">We day trade key reversals. In plain terms, we buy strong reactions from support and sell strong reactions from resistance. AI helps narrow the field, map the chart, and judge the macro mood.</p></div>
   </div>
   <div class="panel hero"><div class="eyebrow">Why users get it fast</div><div id="top5List"></div></div>
